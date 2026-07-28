@@ -1,0 +1,51 @@
+public class solution{
+    public ListNode intersectionLinkedList(ListNode headA, ListNode headB){
+        if(headA==null || headB==null){
+            return null;
+        }
+        int lena=getLen(headA);
+        int lenb=getLen(headB);
+        while(lena>lenb){
+            lena--;
+            headA=headA.next;
+        }
+        while(lena<lenb){
+            lenb--;
+            headB=headB.next
+        }
+        while(headA != headB){
+            headA=headA.next;
+            headB=headB.next;
+        }
+        return headA;
+    }
+    public int getLen(ListNode head){
+        int length=0;
+        ListNode temp=head;
+        while(temp!=null){
+            length++;
+            temp=temp.next;
+        }
+        return length;
+    }
+}
+
+//Another Method using hashset
+public class solution{
+    public ListNode intersectionLinkedList(ListNode headA, ListNode headB){
+        HashSet<ListNode> set=new HashSet<>();
+        ListNode temp=headA;
+        while(temp!=null){
+            set.add(temp);
+            temp=temp.next;
+        }
+        temp=headB;
+        while(temp!=null){
+            if(set.contains(temp)){
+                return temp;
+            }
+            temp=temp.next;
+        }
+        return null;
+    }
+}
