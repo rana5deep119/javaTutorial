@@ -1,0 +1,35 @@
+public class solution{
+    public ListNode pallindrome(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next !=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        if(fast!=null){
+            slow=slow.next;
+        }
+        slow=reverseList(slow);
+        fast=head;
+        while(slow!=null){
+            if(slow.val!=fast.val){
+                return false;
+            }
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return true;
+    }
+    public ListNode reverseList(ListNode head){
+        ListNode prev=null;
+        ListNode curr=head;
+        ListNode nextnode=head;
+        while(curr!=null){
+            nextnode=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nextnode;
+        }
+        return prev;
+    } 
+}
