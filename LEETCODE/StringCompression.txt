@@ -1,0 +1,37 @@
+//
+public class StringCompression{
+    public static void main(String[] args){
+
+    }
+}
+//
+
+class Solution{
+    public int compress(char[] chars){
+        int n=chars.length;
+        int idx=0;
+        
+        for(int i=0;i<n;i++){
+            int count=0;
+            char ch=chars[i];
+
+            while(i<n && char[i]==ch){
+                i++;
+                count++;
+            }
+
+            if(count==1){
+                chars[idx++]=ch;
+            }else{
+                chars[idx++]=ch;
+                String str=String.valueOf(count);    //converting integer to string 
+
+                for(char c:str.toCharArray()){
+                    chars[idx++]=c;
+                }
+            }
+            i--;
+        }
+        return idx;
+    }
+}
