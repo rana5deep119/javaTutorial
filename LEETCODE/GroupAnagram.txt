@@ -1,0 +1,44 @@
+Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
+Example 1:
+
+Input: s = "cbaebabacd", p = "abc"
+Output: [0,6]
+Explanation:
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
+........................................................................................................................................
+
+class Solution{
+    public List<Integer> ans=new ArrayList<>();
+    HashMap<Character,Integer> smap=new HashMap<>();
+    HashMap<Character,Integer> pmap=new HashMap<>();
+
+    for(char ch:p.toCharArray()){
+        pmap.put(ch,mp.getOrDefault(ch,0)+1);
+    }
+
+    int l=0;
+    for(int r=0;r<s.length();r++){
+
+        char rw=s.charAt(r);
+        smap.put(rw, smap.getOrDefault(rw,0)+1);
+
+        if(r-l+1>p.length()){
+
+            char lw=s.charAt(l);
+            smap.put(lw,smap.get(lw)-1);
+
+            if(smap.get(l)==0){
+                smap.remove(l);
+            }
+
+            l++;
+        }
+
+        if(smap.equals(pmap)){
+            ans.add(l);
+        }
+
+    }
+    return ans;
+}
