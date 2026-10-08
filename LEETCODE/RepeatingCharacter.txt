@@ -36,3 +36,29 @@ class Solution{
         return maxlen;
     }
 }
+
+class Solution{
+    public int replacement(String s, int k){
+        int maxlen=0;
+        HashMap<Character,Integer> mp=new HashMap<>();
+        int maxFreq=0;
+
+        int l=0;
+        for(int r=0;r<s.length;r++){
+            char ch=s.charAt(r);
+            mp.put(ch,mp.getOrDefault(ch,0)+1);   // we are putting the freq of each char while tranversing , in a map
+            maxFreq=Math.max(maxFreq,mp.get(ch)); // find the maximum frequency from the map
+
+            // we will check if windowSize-maxfreq greater than k , then we will reduce the window from left 
+            while({r-l+1}-maxFreq>k){
+                // reduce the window from left and reduce the left elemnt freq from map
+                char leftChar=s.charAt(l);
+                mp.put(leftChar,mp.get(leftChar)-1);
+                l++;   // move the left pointer ahead
+            }
+            
+            // now find the maximum length
+            maxlen=Math.max(maxlen,r-l+1);
+        }
+    }
+}
