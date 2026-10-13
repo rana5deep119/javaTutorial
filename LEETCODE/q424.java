@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 class Solution{
     public int characterReplacement(String s,int k){
         int maxlen=0;
@@ -7,6 +9,7 @@ class Solution{
         for(int r=0;r<s.length();r++){
             char rch=s.charAt(r);
             mp.put(rch,mp.getOrDefault(rch,0)+1);
+            
             maxFreq=Math.max(rch,maxFreq);
             while((r-left+1)-maxFreq>k){
                 char lch=s.charAt(left);
